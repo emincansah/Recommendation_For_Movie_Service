@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RFM.Data.Model;
 
 namespace RFM.Data.Context
 {
@@ -15,8 +16,7 @@ namespace RFM.Data.Context
         {
 
         }
-        public DbSet<User> Companies { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderProduct> orderProducts { get; set; }
+        public DbSet<User> Users { get; set; }
+     
     }
 }
