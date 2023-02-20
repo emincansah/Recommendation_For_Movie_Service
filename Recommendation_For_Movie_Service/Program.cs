@@ -5,8 +5,7 @@ using RFM.Data.Context;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Hangfire;
-using RFM.Helper.Hangfire;
-
+using Recommendation_For_Movie_Service.Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;

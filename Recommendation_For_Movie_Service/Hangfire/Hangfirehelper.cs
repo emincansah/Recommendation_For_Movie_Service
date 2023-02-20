@@ -1,6 +1,7 @@
 ﻿using Hangfire;
 using Newtonsoft.Json;
 using RestSharp;
+using RFM.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace RFM.Helper.Hangfire
+namespace Recommendation_For_Movie_Service.Hangfire
 {
     public class Hangfirehelper
     {
