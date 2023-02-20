@@ -10,6 +10,8 @@ namespace Recommendation_For_Movie_Service.Controllers
     public class MovieListController : Controller
     {
         [Authorize]
+        [HttpGet]
+        [Route("Index")]
         public IActionResult Index()
         {
             return View();

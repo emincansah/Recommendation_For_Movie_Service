@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommendation_For_Movie_Service", "Recommendation_For_Movie_Service\Recommendation_For_Movie_Service.csproj", "{00890CA8-2FA9-413D-9F4E-9C827C168493}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recommendation_For_Movie_Service", "Recommendation_For_Movie_Service\Recommendation_For_Movie_Service.csproj", "{00890CA8-2FA9-413D-9F4E-9C827C168493}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFM.Data", "RFMdata\RFM.Data.csproj", "{F81A7A62-1111-4196-8E0A-F86FE58DD2B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFM.Data", "RFMdata\RFM.Data.csproj", "{F81A7A62-1111-4196-8E0A-F86FE58DD2B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFM.Data.Entity", "RFMdata.entity\RFM.Data.Entity.csproj", "{6695F29E-A9DE-4DB1-BF5E-DBAD3212BFE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFM.Data.Entity", "RFMdata.entity\RFM.Data.Entity.csproj", "{6695F29E-A9DE-4DB1-BF5E-DBAD3212BFE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFM.Helper", "RFM.Helper\RFM.Helper.csproj", "{A1A253E9-7779-4765-92C5-9D367E241318}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFM.Helper", "RFM.Helper\RFM.Helper.csproj", "{A1A253E9-7779-4765-92C5-9D367E241318}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceApplications", "ServiceApplications", "{85D151C9-2E5F-440B-8687-D49FA95AC6AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.API", "Web.API", "{CC08D7D0-6A03-45CE-8AD8-160CE5B9D8A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Helper", "Web.Helper", "{84C4685E-1139-48E3-84FE-CE54F17DD729}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Data", "Web.Data", "{AAD20059-7193-4149-96A6-436A64FF93F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +44,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{00890CA8-2FA9-413D-9F4E-9C827C168493} = {CC08D7D0-6A03-45CE-8AD8-160CE5B9D8A6}
+		{F81A7A62-1111-4196-8E0A-F86FE58DD2B0} = {AAD20059-7193-4149-96A6-436A64FF93F8}
+		{6695F29E-A9DE-4DB1-BF5E-DBAD3212BFE8} = {AAD20059-7193-4149-96A6-436A64FF93F8}
+		{A1A253E9-7779-4765-92C5-9D367E241318} = {84C4685E-1139-48E3-84FE-CE54F17DD729}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {283A4615-BF20-459B-864C-E6FBB51F2EA8}

@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using RFM.Data.Entity.EntityModel;
 using RFM.Data.Entity.RequestModels;
 using RFM.Data.Entity.ResponseModels;
+using RFM.Data.Repository;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using static RFM.Helper.Enums.Enums;
 
 namespace Recommendation_For_Movie_Service.Controllers
 {
@@ -30,17 +33,15 @@ namespace Recommendation_For_Movie_Service.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest model)
+        public  IActionResult Login([FromBody] LoginRequest model)
         {
-            //DB KONTROL EKLENECEK
-            var user = await _userManager.FindByNameAsync(model.Username);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-            {
-                var userRoles = await _userManager.GetRolesAsync(user);
 
+            var loginResults = LoginRepository.LoginRepo(model);   
+            if (loginResults== LoginResults.Success)
+            {
                 var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Name, model.Username),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
@@ -65,7 +66,7 @@ namespace Recommendation_For_Movie_Service.Controllers
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddHours(3),
+                expires: DateTime.Now.AddHours(1),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );

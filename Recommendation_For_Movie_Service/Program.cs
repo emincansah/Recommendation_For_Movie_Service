@@ -4,6 +4,8 @@ using Microsoft.IdentityModel.Tokens;
 using RFM.Data.Context;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Hangfire;
+using RFM.Helper.Hangfire;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,13 +14,9 @@ ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 
 // For Entity Framework
-builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));
-
+builder.Services.AddHangfire(options => options.UseSqlServerStorage(configuration.GetValue<string>("HangfireDbConn")));
 // For Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<DataContext>()
-    .AddDefaultTokenProviders();
-
+builder.Services.AddHangfireServer();
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
 {
@@ -26,6 +24,8 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+
+
 
 // Adding Jwt Bearer
 .AddJwtBearer(options =>
@@ -56,6 +56,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHangfireDashboard();
+
+RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringJob(), Cron.Hourly);
 app.UseHttpsRedirection();
 
 // Authentication & Authorization

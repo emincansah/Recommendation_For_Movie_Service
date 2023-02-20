@@ -12,4 +12,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RFM.Helper\RFM.Helper.csproj" />
+    <ProjectReference Include="..\RFMdata.entity\RFM.Data.Entity.csproj" />
+  </ItemGroup>
+
 </Project>
