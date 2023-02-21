@@ -11,6 +11,6 @@ namespace RFM.Data.Entity.EntityModel
         public int Id { get; set; }
         public int user_id { get; set; }
         public double vote { get; set; }
-        public double notes { get; set; }
+        public string notes { get; set; }
     }
 }

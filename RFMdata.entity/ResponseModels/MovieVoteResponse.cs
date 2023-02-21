@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using static RFM.Helper.Enums.Enums;
 
-namespace RFM.Data.Entity.ResponseModels
+namespace RFM.Data.Entity.RequestModels
 {
-    public class RecommendationResponse
+    public class MovieVoteResponse
     {
-        public RecommendationResult RecommendationResult { get; set; }
-
+        public VoteResult VoteResult { get; set; }
+        
     }
 }

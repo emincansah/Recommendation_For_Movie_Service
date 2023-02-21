@@ -16,12 +16,38 @@ namespace RFM.Helper.Enums
             InvalidLogin,
             [EnumDescription("Kulanıcı aktif değil")]
             InactiveUser,
-            [EnumDescription("Portal erişimi engellendi")]
+            [EnumDescription("API erişimi engellendi")]
             AccessDisabled,
             [EnumDescription("Kullanıcı ve şifre boş olamaz")]
             EmptyUserOrNamePass,
-            [EnumDescription("Veritabanı hatası veya erişimi yok")]
+            [EnumDescription("Veritabanı hatası")]
             DbError,
+        }
+        public enum VoteResult
+        {
+            [EnumDescription("Başarılı")]
+            Success,
+            [EnumDescription("Film Bulunamadı")]
+            InvalidMovie, 
+            [EnumDescription("Veritabanı hatası")]
+            DbError,
+        }
+        public enum RecommendationResult
+        {
+            [EnumDescription("Başarılı")]
+            Success,
+            [EnumDescription("Film Bulunamadı")]
+            InvalidMovie,
+            [EnumDescription("Veritabanı hatası")]
+            DbError,
+        }
+        public enum EmailStatus
+        {
+            [EnumDescription("Gönderim Tamamlandı")]
+            Success =10,
+            [EnumDescription("Gönderim Bekliyor")]
+            Draft =1,
+            
         }
     }
 }

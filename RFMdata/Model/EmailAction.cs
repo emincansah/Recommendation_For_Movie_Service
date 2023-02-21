@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RFM.Data.Model
 {
-    public class Moviesvote
+    public class EmailAction
     {
         public int Id { get; set; }
-        public int MovieId { get; set; }
-        public int user_id { get; set; }
-        public int vote { get; set; }
-        public string note { get; set; }
+        public string email { get; set; }
+        public int moiveId { get; set; }
+        
+        public int status { get; set; }
     }
 }

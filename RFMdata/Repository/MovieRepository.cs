@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RFM.Helper.Enums.Enums;
 
 namespace RFM.Data.Repository
 {
@@ -61,6 +62,57 @@ namespace RFM.Data.Repository
                 MovieDetailResponse movieDetailResponse = new MovieDetailResponse();
                 return movieDetailResponse;
             }
+        }
+        public static MovieVoteResponse PostMovieVote(MovieVoteRequest request)
+        {
+            try
+            {
+                MovieVoteResponse movieVoteResponse = new MovieVoteResponse();
+                using (var db = new DataContext())
+                {
+
+                    Movies movies = db.Movies.Where(x => x.Id == request.MovieId).FirstOrDefault();
+
+                    if (movies == null)
+                        movieVoteResponse.VoteResult= VoteResult.InvalidMovie;
+                    else
+                        movieVoteResponse.VoteResult =  PostVote(movies,db,request);
+
+                    return movieVoteResponse;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MovieVoteResponse movieVoteResponse = new MovieVoteResponse();
+                movieVoteResponse.VoteResult = VoteResult.DbError;
+                return movieVoteResponse;
+            }
+        }
+        public static VoteResult PostVote(Movies movie, DataContext db, MovieVoteRequest vote)
+        {
+            try
+            {
+                Moviesvote newvote = new Moviesvote();
+                newvote.MovieId = movie.Id;
+                newvote.vote = vote.Vote;
+                newvote.note = vote.Note;
+                newvote.user_id = 1;
+                db.Moviesvote.Add(newvote);
+
+                var moviesumvote = db.Moviesvote.Where(x => x.MovieId == movie.Id).ToList().Sum(x=>x.vote);
+                moviesumvote = moviesumvote + vote.Vote;
+                movie.vote_count++;
+                movie.vote_average = moviesumvote / movie.vote_count;
+                db.SaveChanges();
+                return VoteResult.Success;
+            }
+            catch (Exception)
+            {
+
+                return VoteResult.DbError;
+            }
+           
         }
         public static MovieDetailResponse DatatoEntity(Movies movie, List<Moviesvote> votes)
         {
