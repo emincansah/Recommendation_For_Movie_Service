@@ -16,16 +16,13 @@ namespace Recommendation_For_Movie_Service.Controllers
         [HttpGet]
         public MovieListResponse GetMovieList(MovieListRequest request)
         {
-            MovieListResponse response = new MovieListResponse();
-             response = MovieRepository.GetMovieList(request);
-            return response;
+             return MovieRepository.GetMovieList(request);
         }
 
         [Authorize]
         [HttpGet]
         public MovieDetailResponse GetMovieDetail(MovieDetailRequest request)
         {
-            
             return MovieRepository.GetMovieDetail(request); 
         }
         [Authorize]

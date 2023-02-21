@@ -10,8 +10,7 @@ namespace RFM.Data.Model
     {
         public int Id { get; set; }
         public string email { get; set; }
-        public int moiveId { get; set; }
-        
+        public int moiveId { get; set; } 
         public int status { get; set; }
     }
 }

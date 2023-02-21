@@ -57,9 +57,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHangfireDashboard();
 
-RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringJob(), Cron.Hourly);
+RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringMovieJob(), Cron.Hourly);
 
-RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringJob(), Cron.Minutely);
+RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringMailJob(), Cron.Minutely);
 app.UseHttpsRedirection();
 
 // Authentication & Authorization
