@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RFM.Data.Model
+namespace RFM.Data.Entity.ResponseModels
 {
-    public class User
+    public class MovieDetailRequest
     {
-        public int Id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
+        [Required(ErrorMessage = "MovieId is required")]
+        public int MovieId { get; set; }
 
     }
 }

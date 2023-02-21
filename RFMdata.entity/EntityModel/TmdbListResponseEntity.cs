@@ -25,7 +25,7 @@ namespace RFM.Data.Entity
         public int vote_count { get; set; }
     }
 
-    public class TmdbListResponse
+    public class TmdbListResponseEntity
     {
         public int page { get; set; }
         public List<Result> results { get; set; }
