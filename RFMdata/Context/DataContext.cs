@@ -17,6 +17,8 @@ namespace RFM.Data.Context
 
         }
         public DbSet<User> Users { get; set; }
-     
+        public DbSet<Movies> Movies { get; set; }
+        public DbSet<Moviesvote> Moviesvote { get; set; }
+
     }
 }
