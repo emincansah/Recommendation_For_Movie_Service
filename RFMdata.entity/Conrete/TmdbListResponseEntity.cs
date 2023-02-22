@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RFM.Data.Entity
+namespace RFM.Entities.Conrete
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class Result

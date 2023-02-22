@@ -1,5 +1,4 @@
-﻿
-using RFM.Data.Entity.EntityModel;
+﻿using RFM.Entities.Conrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,6 @@ namespace RFM.Data.Entity.ResponseModels
         public string overview { get; set; }
         public double vote_average { get; set; }
         public int vote_count { get; set; }
-        public List<MovieVoteEntity> user_votes { get; set; }
 
     }
 }

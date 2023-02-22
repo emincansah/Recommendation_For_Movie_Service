@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RFM.Data.Entity.EntityModel
+namespace RFM.Entities.Conrete
 {
     public class BaseEntity
     {

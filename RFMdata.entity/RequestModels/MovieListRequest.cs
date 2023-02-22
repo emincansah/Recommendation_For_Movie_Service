@@ -12,7 +12,5 @@ namespace RFM.Data.Entity.ResponseModels
         [Required(ErrorMessage = "PageNumber is required")]
         public int PageNumber { get; set; }
 
-        [Required(ErrorMessage = "MoviesCount is required")]
-        public int MovieCount { get; set; }
     }
 }

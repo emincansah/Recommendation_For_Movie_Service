@@ -1,35 +1,50 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RFM.Data.Entity.RequestModels;
 using RFM.Data.Entity.ResponseModels;
-using RFM.Data.Repository;
+
 
 namespace Recommendation_For_Movie_Service.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Movie")]
-    //[ApiController]
    
+   
+
     public class MovieController : Controller
     {
-        [Authorize]
-        [HttpGet]
-        public MovieListResponse GetMovieList(MovieListRequest request)
+        private readonly IMovieService _movieService;
+        public MovieController(IMovieService movieService)
         {
-             return MovieRepository.GetMovieList(request);
+            this._movieService = movieService;
         }
 
         [Authorize]
         [HttpGet]
-        public MovieDetailResponse GetMovieDetail(MovieDetailRequest request)
+        [Route("api/GetMovie")]
+
+        public async Task<IActionResult> GetMovieList(MovieListRequest request)
         {
-            return MovieRepository.GetMovieDetail(request); 
+            var movieslist = await _movieService.GetMoviesList(request);
+            return Ok(movieslist);
         }
+
         [Authorize]
-        [HttpPost]
-        public MovieVoteResponse PostVote(MovieVoteRequest request)
+        [HttpGet]
+        [Route("api/GetMovieDetail")]
+
+        public async Task<IActionResult> GetMovieDetail(MovieDetailRequest request)
         {
-            return MovieRepository.PostMovieVote(request);
+            var movie = await _movieService.GetMovies(request.MovieId);
+            return Ok(movie);
+        }
+
+        [Authorize]
+        [Route("api/PostVote")]
+        [HttpPost]
+        public IActionResult PostVote(MovieVoteRequest request)
+        {
+            return Ok();
         }
     }
 }

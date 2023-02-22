@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Business.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using RFM.Data.Entity.EntityModel;
 using RFM.Data.Entity.RequestModels;
 using RFM.Data.Entity.ResponseModels;
-using RFM.Data.Repository;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,38 +12,37 @@ using static RFM.Helper.Enums.Enums;
 namespace Recommendation_For_Movie_Service.Controllers
 {
     [Produces("application/json")]
-    [Route("api/auth")]
-    [ApiController]
+
 
     public class AuthController : Controller
     {
+        private readonly ILoginService _loginService;
         private readonly UserManager<IdentityUser> _userManager;
-     
-        private readonly IConfiguration _configuration;
 
-        public AuthController(
-            UserManager<IdentityUser> userManager,
-        
-            IConfiguration configuration)
-        {
+        private readonly IConfiguration _configuration;
+        public  AuthController(ILoginService loginService, UserManager<IdentityUser> userManager, IConfiguration configuration)
+            {
+            this._loginService = loginService;
+
             _userManager = userManager;
             _configuration = configuration;
         }
+        
 
+        
         [HttpPost]
-        public  IActionResult Login([FromBody] LoginRequest model)
+        [Route("api/Login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest model)
         {
 
-            var loginResults = LoginRepository.LoginRepo(model);   
-            if (loginResults== LoginResults.Success)
+            bool loginResults = await _loginService.Logins(model.Username,model.Password);
+            if (loginResults )
             {
                 var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, model.Username),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
-
-                
 
                 var token = GetToken(authClaims);
 

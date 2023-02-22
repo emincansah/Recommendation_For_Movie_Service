@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Core.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RFM.Data.Model
+namespace RFM.Entities.Conrete
 {
-    public class Moviesvote
+    public class Moviesvote : BaseEntity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
+    
+    
+        [ForeignKey("MovieId")]
         public int MovieId { get; set; }
         public int user_id { get; set; }
         public int vote { get; set; }

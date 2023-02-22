@@ -24,8 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RFMdata.entity\RFM.Data.Entity.csproj" />
-    <ProjectReference Include="..\RFMdata\RFM.Data.csproj" />
+    <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\RFMdata.entity\RFM.Entities.csproj" />
+    <ProjectReference Include="..\RFMdata\RFM.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

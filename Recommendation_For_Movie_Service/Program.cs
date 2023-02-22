@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using RFM.Data.Context;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Hangfire;
 using Recommendation_For_Movie_Service.Hangfire;
-using RFM.Data.Entity.EntityModel;
+using RFM.Entities.Conrete;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -48,7 +47,6 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
     };
 });
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -67,7 +65,7 @@ app.UseHangfireDashboard();
 
 RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringMovieJob(), Cron.Hourly);
 
-RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringMailJob(), Cron.Minutely);
+RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringMailJob(emailConfig), Cron.Minutely);
 app.UseHttpsRedirection();
 
 // Authentication & Authorization

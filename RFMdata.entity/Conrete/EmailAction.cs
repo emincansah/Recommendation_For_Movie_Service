@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Core.Entities;
 
-namespace RFM.Data.Model
+namespace RFM.Entities.Conrete
 {
-    public class EmailAction
+    public class EmailAction : BaseEntity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
+    
+      
         public string email { get; set; }
         public int moiveId { get; set; } 
         public int status { get; set; }

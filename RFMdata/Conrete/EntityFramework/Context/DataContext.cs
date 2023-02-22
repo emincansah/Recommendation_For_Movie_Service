@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using RFM.Data.Model;
+using RFM.Entities.Conrete;
+
 
 namespace RFM.Data.Context
 {
