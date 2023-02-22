@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RFM.DataAccess.Conrete
 {
-    internal class MovieVoteDal: EntityFrameworkRepository<Moviesvote, DataContext>, IMovieVoteDal
+    public class MovieVoteDal: EntityFrameworkRepository<Moviesvote, DataContext>, IMovieVoteDal
     {
     }
 }

@@ -14,8 +14,4 @@
     <ProjectReference Include="..\RFMdata\RFM.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DiContainer\" />
-  </ItemGroup>
-
 </Project>

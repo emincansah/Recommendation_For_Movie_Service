@@ -17,14 +17,12 @@ namespace Recommendation_For_Movie_Service.Controllers
     public class AuthController : Controller
     {
         private readonly ILoginService _loginService;
-        private readonly UserManager<IdentityUser> _userManager;
 
         private readonly IConfiguration _configuration;
-        public  AuthController(ILoginService loginService, UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public  AuthController(ILoginService loginService, IConfiguration configuration)
             {
             this._loginService = loginService;
 
-            _userManager = userManager;
             _configuration = configuration;
         }
         

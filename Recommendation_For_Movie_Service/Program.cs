@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Hangfire;
 using Recommendation_For_Movie_Service.Hangfire;
 using RFM.Entities.Conrete;
+using Business.DiContainer;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -23,6 +24,7 @@ var emailConfig = builder.Configuration
        .Get<EmailConfiguration>();
 
 builder.Services.AddSingleton(emailConfig);
+builder.Services.AddContainerWithDependencies();
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
 {

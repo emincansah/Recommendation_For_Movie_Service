@@ -18,9 +18,23 @@ namespace Business.Manager
             _logindal = logindal;
         }
 
-        public Task<bool> Logins(string username, string password)
+        public async Task<bool> Logins(string username, string password)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user =await _logindal.Get(x => x.username == username && x.password == password);
+                if (user != null)
+                    return true;
+                else
+                    return false;
+
+            }
+            catch (Exception)
+            {
+
+                return false; 
+            }
+           
         }
 
     }
