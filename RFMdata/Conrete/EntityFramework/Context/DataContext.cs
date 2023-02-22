@@ -12,7 +12,7 @@ namespace RFM.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var appSettingsJson = AppSettingsJson.GetAppSettings();
-            var connectionString = appSettingsJson["ConnectionStrings:DefaultConnection"];
+            var connectionString = appSettingsJson["ConnectionStrings:MsSQLConnection"];
             optionsBuilder.UseSqlServer(connectionString);
         }
  

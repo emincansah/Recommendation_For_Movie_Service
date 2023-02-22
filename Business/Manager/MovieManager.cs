@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RFM.Data.Entity.ResponseModels;
 using RFM.Data.Entity.RequestModels;
+using System.Drawing.Printing;
 
 namespace Business.Manager
 {
@@ -48,7 +49,7 @@ namespace Business.Manager
         {
             MovieListResponse movieListResponse= new MovieListResponse();
             var count = await _moviesdal.Count();
-            int pagecount = count / 100;
+            int pagecount = (count / 100) + (count % 100 > 0 ? 1 : 0);
             var movielist=  await _moviesdal.GetAll();
             foreach (var movieitem in movielist)
             {
@@ -58,7 +59,7 @@ namespace Business.Manager
                 movie.vote_average = movieitem.vote_average;
                 movie.title = movieitem.title;
                 movie.vote_count = movieitem.vote_count;
-
+                movieListResponse.Movies =new List<MoviesEntity> {  };
                 movieListResponse.Movies.Add(movie);
             }
             movieListResponse.total_pages = pagecount;

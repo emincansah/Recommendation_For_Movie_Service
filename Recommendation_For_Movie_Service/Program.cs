@@ -15,7 +15,6 @@ ConfigurationManager configuration = builder.Configuration;
 
 // For Entity Framework
 builder.Services.AddHangfire(options => options.UseSqlServerStorage(configuration.GetValue<string>("HangfireDbConn"))); 
-builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MsSQLConnection")));
 // For Identity
 builder.Services.AddHangfireServer();
 //emailconfiguration

@@ -23,14 +23,10 @@ namespace Recommendation_For_Movie_Service.Controllers
             var votepost = await _movievoteService.PostVote(request);
             var updateresult = await _movieService.Update(request);
             if (votepost && updateresult)
-
-            {
                 return Ok();
-            }
-            else
-            {
+            else     
                 return BadRequest();
-            }
+            
              
         }
     }
