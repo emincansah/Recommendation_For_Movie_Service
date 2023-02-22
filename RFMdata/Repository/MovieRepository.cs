@@ -48,7 +48,7 @@ namespace RFM.Data.Repository
                 using (var db = new DataContext())
                 {
                     
-                    Movies movies = db.Movies.Where(x=>x.Id == request.MovieId).FirstOrDefault();
+                    Movies movies = db.Movies.FirstOrDefault(x => x.Id == request.MovieId);
                     List<Moviesvote> votes = db.Moviesvote.Where(x => x.MovieId == movies.Id).ToList();
                     if (movies != null)
                         return DatatoEntity(movies, votes);

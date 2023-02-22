@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
-namespace RFM.Data.Model
+namespace RFM.Data.Entity.EntityModel
 {
-    public class EmailAction
+    public class EmailActionEntity
     {
-        [Key]
         public int Id { get; set; }
         public string email { get; set; }
         public int moiveId { get; set; } 

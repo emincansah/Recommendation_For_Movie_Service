@@ -32,7 +32,6 @@ namespace Recommendation_For_Movie_Service.Controllers
         }
 
         [HttpPost]
-        [Route("login")]
         public  IActionResult Login([FromBody] LoginRequest model)
         {
 

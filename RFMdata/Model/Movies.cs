@@ -9,7 +9,7 @@ namespace RFM.Data.Model
 {
     public class Movies
     {
-       
+        [Key]
         public int Id { get; set; } 
         public string original_language { get; set; }
         public string title { get; set; }
