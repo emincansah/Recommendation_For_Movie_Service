@@ -17,16 +17,26 @@ namespace Core.DataAccess.EntityFramework
 
     {
 
-        public void Add(TEntity entity)
+        public async Task<bool> Add(TEntity entity)
         {
-            using (TContext context = new TContext())
+            try
             {
-                var addedEntity = context.Entry(entity);
+                using (TContext context = new TContext())
+                {
+                    var addedEntity = context.Entry(entity);
 
-                addedEntity.State = EntityState.Added;
+                    addedEntity.State = EntityState.Added;
 
-                context.SaveChanges();
+                    context.SaveChanges();
+                    return  true;
+                }
             }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
         }
 
         public void Delete(TEntity entity)
@@ -49,15 +59,15 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public async Task<List<TEntity>> GetAll(int pagecount)
+        public async Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter)
         {
             using (TContext context = new TContext())
             { 
-                return pagecount == 1 ? await context.Set<TEntity>().Take(100).ToListAsync() : await context.Set<TEntity>().Skip(pagecount*100).Take(100).ToListAsync();
+                return filter == null ? await context.Set<TEntity>().ToListAsync() : await context.Set<TEntity>().Where(filter).ToListAsync();
             }
         }
 
-        public void Update(TEntity entity)
+        public async Task<bool> Update(TEntity entity)
         {
             using (TContext context = new TContext())
             {
@@ -67,6 +77,7 @@ namespace Core.DataAccess.EntityFramework
 
                 context.SaveChanges();
             }
+            return true;
         }
         public async Task<int> Count()
         {
@@ -75,5 +86,6 @@ namespace Core.DataAccess.EntityFramework
                 return await context.Set<TEntity>().CountAsync();
             }
         }
+      
     }
 }

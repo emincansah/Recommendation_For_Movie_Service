@@ -39,12 +39,6 @@ namespace Recommendation_For_Movie_Service.Controllers
             return Ok(movie);
         }
 
-        [Authorize]
-        [Route("api/PostVote")]
-        [HttpPost]
-        public IActionResult PostVote(MovieVoteRequest request)
-        {
-            return Ok();
-        }
+       
     }
 }

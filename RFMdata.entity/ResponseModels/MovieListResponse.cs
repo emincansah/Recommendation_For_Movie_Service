@@ -9,7 +9,8 @@ namespace RFM.Data.Entity.ResponseModels
 {
     public class MovieListResponse
     {
-        List<MoviesEntity> moviesEntity=new List<MoviesEntity>();
+
+        public List<MoviesEntity> Movies { get; set; }
         public int total_results { get; set; }
         public int total_pages { get; set; }
     

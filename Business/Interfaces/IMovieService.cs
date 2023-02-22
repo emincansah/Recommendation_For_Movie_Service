@@ -1,4 +1,5 @@
-﻿using RFM.Data.Entity.ResponseModels;
+﻿using RFM.Data.Entity.RequestModels;
+using RFM.Data.Entity.ResponseModels;
 using RFM.Entities.Conrete;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Business.Interfaces
         Task<Movies> GetMovies(int id);
         Task<MovieListResponse> GetMoviesList(MovieListRequest request);
         Task<int> GetCount();
+        Task<bool> Update(MovieVoteRequest request);
 
 
 

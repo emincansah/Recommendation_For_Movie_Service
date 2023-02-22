@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RFM.DataAccess.Interfaces
 {
-    public interface IMovieDal: IEntityRepository<Movies>
+    public interface ILoginDal: IEntityRepository<User>
     {
     }
 }
