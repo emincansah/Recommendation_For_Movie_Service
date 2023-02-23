@@ -11,9 +11,6 @@ namespace RFM.Entities.Conrete
 {
     public class Moviesvote : BaseEntity, IEntity
     {
-    
-    
-        [ForeignKey("MovieId")]
         public int MovieId { get; set; }
         public int user_id { get; set; }
         public int vote { get; set; }

@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using RFM.Data.Context;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
 using Hangfire;
 using Recommendation_For_Movie_Service.Hangfire;
 using RFM.Entities.Conrete;
@@ -64,15 +62,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHangfireDashboard();
 
-RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringMovieJob(), Cron.Hourly);
 
-RecurringJob.AddOrUpdate(() => Hangfirehelper.ProcessRecurringMailJob(emailConfig), Cron.Minutely);
 app.UseHttpsRedirection();
 
 // Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseRouting();
 app.MapControllers();
 
 app.Run();

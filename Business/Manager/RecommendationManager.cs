@@ -38,6 +38,11 @@ namespace Business.Manager
             emailaction.status = EmailStatus.Success.GetIntValue();
             return await _recommendationdal.Add(emailaction);
         }
+        public async Task<List<EmailAction>> GetMovieRecommendationList(RecommendationRequest request)
+        {
+          
+            return await _recommendationdal.GetAll(x=>x.status == EmailStatus.Draft.GetIntValue());
+        }
 
     }
 }

@@ -13,9 +13,10 @@ namespace Recommendation_For_Movie_Service.Controllers
 
     public class MovieController : Controller
     {
+       
         private readonly IMovieService _movieService;
-        public MovieController(IMovieService movieService)
-        {
+        public MovieController(IMovieService movieService )
+        {  
             this._movieService = movieService;
         }
 
@@ -38,6 +39,7 @@ namespace Recommendation_For_Movie_Service.Controllers
             var movie = await _movieService.GetMovies(request.MovieId);
             return Ok(movie);
         }
+
 
        
     }

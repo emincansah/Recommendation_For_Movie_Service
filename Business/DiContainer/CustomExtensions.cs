@@ -16,13 +16,15 @@ namespace Business.DiContainer
             services.AddScoped<ILoginService, LoginManager>();
             services.AddScoped<IMovieService, MovieManager>();
             services.AddScoped<IMovieVoteService, MovieVoteManager>();
-          
+            services.AddScoped<IRecommendationService, RecommendationManager>();
+           
 
             // DataAccess
             services.AddScoped<ILoginDal, LoginDal>();
             services.AddScoped<IMovieDal, MoviesDal>();
             services.AddScoped<IMovieVoteDal, MovieVoteDal>();
-
+            services.AddScoped<IRecommendationDal, RecommendationDal>();
         }
+
     }
 }

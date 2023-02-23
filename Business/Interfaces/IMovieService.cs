@@ -15,6 +15,8 @@ namespace Business.Interfaces
         Task<MovieListResponse> GetMoviesList(MovieListRequest request);
         Task<int> GetCount();
         Task<bool> Update(MovieVoteRequest request);
+        Task<bool> PostMovie(Movies movie);
+        
 
 
 

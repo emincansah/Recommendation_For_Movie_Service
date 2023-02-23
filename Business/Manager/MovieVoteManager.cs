@@ -29,7 +29,14 @@ namespace Business.Manager
 
 
         }
-        
-       
+
+        public async Task<List<Moviesvote>> GetVote(int id)
+        {
+            
+            return await _moviesvotedal.GetAll(x=>x.Id==id);
+
+
+        }
+
     }
 }

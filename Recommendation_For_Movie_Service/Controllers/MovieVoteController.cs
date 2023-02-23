@@ -15,6 +15,7 @@ namespace Recommendation_For_Movie_Service.Controllers
                  this._movieService = movieService;
                  this._movievoteService = movievoteService;
         }
+
         [Authorize]
         [Route("api/PostVote")]
         [HttpPost]
@@ -27,7 +28,6 @@ namespace Recommendation_For_Movie_Service.Controllers
             else     
                 return BadRequest();
             
-             
         }
     }
 }

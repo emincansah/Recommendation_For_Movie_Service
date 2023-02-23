@@ -16,15 +16,23 @@ namespace Business.Manager
     public class MovieManager : IMovieService
     {
         private readonly IMovieDal _moviesdal;
-
-        public MovieManager( IMovieDal moviesdal)
+        private readonly IMovieVoteDal _moviesvotedal;
+        public MovieManager( IMovieDal moviesdal, IMovieVoteDal moviesvotedal)
         {
             _moviesdal = moviesdal;
-        }      
-        public Task<bool> Add(Movies movie)
-        {
-            throw new NotImplementedException();
+            _moviesvotedal = moviesvotedal;
         }
+        public async Task<bool> PostMovie(Movies movie)
+        {
+            Movies movies = new Movies();
+            movies.title = movie.title;
+            movies.overview = movie.overview;
+            movies.vote_average = 0;
+            movies.vote_count = 0;
+            movies.original_language = movie.original_language;           
+            return await _moviesdal.Add(movies);
+        }
+
         public async Task<bool> Update(MovieVoteRequest request)
         {
             var movie = await _moviesdal.Get(x=>x.Id==request.MovieId);
@@ -43,7 +51,14 @@ namespace Business.Manager
 
         public async Task<Movies> GetMovies( int id)
         {
-            return await _moviesdal.Get(x=> x.Id == id);
+            Movies movie = await _moviesdal.Get(x => x.Id == id);
+            var votelis = await _moviesvotedal.GetAll(x => x.MovieId == id);
+            movie.Votes = new List<Moviesvote> { };
+            foreach (var votel in votelis)
+            {
+                movie.Votes.Add(votel);
+            }
+            return movie;
         }
         public async Task<MovieListResponse> GetMoviesList(MovieListRequest request)
         {
@@ -51,6 +66,7 @@ namespace Business.Manager
             var count = await _moviesdal.Count();
             int pagecount = (count / 100) + (count % 100 > 0 ? 1 : 0);
             var movielist=  await _moviesdal.GetAll();
+
             foreach (var movieitem in movielist)
             {
                 MoviesEntity movie = new MoviesEntity();

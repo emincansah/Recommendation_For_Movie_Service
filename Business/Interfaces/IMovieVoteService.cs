@@ -11,6 +11,7 @@ namespace Business.Interfaces
     public interface IMovieVoteService
     {
         Task<bool> PostVote(MovieVoteRequest request);
-       
+        Task<List<Moviesvote>> GetVote(int id);
+
     }
 }
