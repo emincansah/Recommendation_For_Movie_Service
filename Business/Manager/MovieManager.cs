@@ -65,7 +65,14 @@ namespace Business.Manager
             MovieListResponse movieListResponse= new MovieListResponse();
             var count = await _moviesdal.Count();
             int pagecount = (count / 100) + (count % 100 > 0 ? 1 : 0);
-            var movielist=  await _moviesdal.GetAll();
+            int listcount = request.PageNumber * 100;
+            var movielist = await _moviesdal.GetAll();
+            List<Movies> result = new List<Movies>();
+            if (request.PageNumber == 1)
+             result = movielist.Take(100).ToList();
+           else
+             result = movielist.Take(100).Skip((request.PageNumber - 1) * pagecount).ToList();
+
 
             foreach (var movieitem in movielist)
             {
