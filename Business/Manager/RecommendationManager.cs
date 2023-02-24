@@ -27,18 +27,10 @@ namespace Business.Manager
             EmailAction emailaction = new EmailAction();
             emailaction.email = request.Email;
             emailaction.moiveId = request.MovieId;
-            emailaction.status = EmailStatus.Draft.GetIntValue();
+            emailaction.status = EmailStatus.Success.GetIntValue();
             return await _recommendationdal.Add(emailaction);
         }
-        public async Task<bool> PostMovieRecommendationUpdate(EmailAction action)
-        {
-            return await _recommendationdal.Update(action);
-        }
-        public async Task<EmailAction> GetMovieRecommendation(RecommendationRequest request)
-        {
-          
-            return await _recommendationdal.Get(x=>x.status == EmailStatus.Draft.GetIntValue() && x.moiveId==request.MovieId && x.email==request.Email);
-        }
+       
 
     }
 }

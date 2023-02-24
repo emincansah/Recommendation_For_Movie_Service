@@ -56,56 +56,7 @@ namespace Recommendation_For_Movie_Service.Hangfire
         }
 
 
-        public async Task ProcessRecurringMailJob(RecommendationRequest request)
-        {
-            var appSettingsJson = AppSettingsJson.GetAppSettings();
-            EmailConfiguration emailConfig = new EmailConfiguration();
-
-            emailConfig.From = appSettingsJson["EmailConfiguration:From"];
-            emailConfig.SmtpServer = appSettingsJson["EmailConfiguration:SmtpServer"];
-            emailConfig.Port = int.Parse(appSettingsJson["EmailConfiguration:Port"]);
-            emailConfig.UserName = appSettingsJson["EmailConfiguration:Username"];
-            emailConfig.Password = appSettingsJson["EmailConfiguration:Password"];
-            
-            SmtpClient client = new SmtpClient(emailConfig.SmtpServer, 587);
-            NetworkCredential AccountInfo = new NetworkCredential(emailConfig.UserName, emailConfig.Password);
-            client.UseDefaultCredentials = false;
-            client.Credentials = AccountInfo;
-            client.EnableSsl = true;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-        
-            // yıl bazlı film listesi alma
-            var emailaction =await _recommendationService.GetMovieRecommendation(request);
-            if (emailaction !=null)
-            {
-
-                try
-                {
-                    MailMessage msg = new MailMessage();
-                    msg.Subject = "Movie Recommendation";
-                    msg.From = new MailAddress(emailConfig.From, "Movie Recommendation");
-                    msg.To.Add(new MailAddress(emailaction.email));
-                    msg.Body = "Movies Id = <br>" + emailaction.moiveId;
-                    msg.IsBodyHtml = true;
-                    msg.Priority = MailPriority.High;
-                    client.Send(msg);
-                    emailaction.status= EmailStatus.Draft.GetIntValue();
-                    await _recommendationService.PostMovieRecommendationUpdate(emailaction);
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-
-            }
        
-
-
-
-            }
-
         
 
     }

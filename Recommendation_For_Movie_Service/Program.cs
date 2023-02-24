@@ -20,6 +20,9 @@ var emailConfig = builder.Configuration
        .GetSection("EmailConfiguration")
        .Get<EmailConfiguration>();
 
+builder.Services.AddStackExchangeRedisCache(options => { options.Configuration = configuration.GetValue<string>("RedisUrl"); });
+
+
 builder.Services.AddSingleton(emailConfig);
 builder.Services.AddContainerWithDependencies();
 // Adding Authentication
