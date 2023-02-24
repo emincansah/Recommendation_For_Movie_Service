@@ -52,7 +52,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+// Authentication & Authorization
+app.UseAuthentication();
+app.UseAuthorization();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -65,11 +67,7 @@ app.UseHangfireDashboard();
 
 app.UseHttpsRedirection();
 
-// Authentication & Authorization
-app.UseAuthentication();
-app.UseAuthorization();
 
-app.UseRouting();
 app.MapControllers();
 
 app.Run();

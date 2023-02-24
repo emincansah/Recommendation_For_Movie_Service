@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFM.Entities", "RFMdata.ent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFM.Helper", "RFM.Helper\RFM.Helper.csproj", "{A1A253E9-7779-4765-92C5-9D367E241318}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{FEAFB176-F482-4B10-AC07-DCD2BFEB3AF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{FEAFB176-F482-4B10-AC07-DCD2BFEB3AF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{375420E1-764C-4B14-AE54-DAD71A210FCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{375420E1-764C-4B14-AE54-DAD71A210FCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_RecommendationProject", "Test_RecommendationProject\Test_RecommendationProject.csproj", "{A8E0BF21-F80B-45D0-9082-5B75F3F52F62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{375420E1-764C-4B14-AE54-DAD71A210FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{375420E1-764C-4B14-AE54-DAD71A210FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{375420E1-764C-4B14-AE54-DAD71A210FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8E0BF21-F80B-45D0-9082-5B75F3F52F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E0BF21-F80B-45D0-9082-5B75F3F52F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E0BF21-F80B-45D0-9082-5B75F3F52F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E0BF21-F80B-45D0-9082-5B75F3F52F62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

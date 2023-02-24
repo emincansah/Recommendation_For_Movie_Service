@@ -23,24 +23,11 @@ namespace Recommendation_For_Movie_Service.Controllers
         [Route("Home/Index")]
         public async Task<IActionResult> Index()
         {
-
-            Hangfirehelper _cc = new Hangfirehelper(_movieService,_recommendationService);
-
+            Hangfirehelper _cc = new Hangfirehelper(_movieService,_recommendationService);           
             BackgroundJob.Enqueue(() => _cc.ProcessEnqueueMovieJob());
+            return  new RedirectResult("~/swagger");
 
-
-            var appSettingsJson = AppSettingsJson.GetAppSettings();  
-            EmailConfiguration _emailConfig =new EmailConfiguration();
-
-            _emailConfig.From = appSettingsJson["EmailConfiguration:From"];
-            _emailConfig.SmtpServer = appSettingsJson["EmailConfiguration:SmtpServer"];
-            _emailConfig.Port =int.Parse( appSettingsJson["EmailConfiguration:Port"]);
-            _emailConfig.UserName = appSettingsJson["EmailConfiguration:Username"];
-            _emailConfig.Password = appSettingsJson["EmailConfiguration:Password"];
-         
-            RecurringJob.AddOrUpdate(() => _cc.ProcessRecurringMailJob(_emailConfig), Cron.Hourly);
-
-            return  null;
+            
         }
     }
 }

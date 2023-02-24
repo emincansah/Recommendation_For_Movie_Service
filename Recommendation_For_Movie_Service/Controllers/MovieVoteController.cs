@@ -21,6 +21,9 @@ namespace Recommendation_For_Movie_Service.Controllers
         [HttpPost]
         public async Task<IActionResult> PostVote(MovieVoteRequest request)
         {
+            var movie = await _movieService.GetMovies(request.MovieId);
+            if (movie == null)
+            return NotFound();
             var votepost = await _movievoteService.PostVote(request);
             var updateresult = await _movieService.Update(request);
             if (votepost && updateresult)

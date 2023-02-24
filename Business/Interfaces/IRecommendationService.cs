@@ -11,8 +11,8 @@ namespace Business.Interfaces
 {
     public interface IRecommendationService
     {
-        Task<List<EmailAction>> GetMovieRecommendationList(RecommendationRequest request);
+        Task<EmailAction> GetMovieRecommendation(RecommendationRequest request);
         Task<bool> PostMovieRecommendation(RecommendationRequest request);
-        Task<bool> PostMovieRecommendationUpdate(RecommendationRequest request);
+        Task<bool> PostMovieRecommendationUpdate(EmailAction action);
     }
 }
