@@ -17,6 +17,7 @@ namespace Business.DiContainer
             services.AddScoped<IMovieService, MovieManager>();
             services.AddScoped<IMovieVoteService, MovieVoteManager>();
             services.AddScoped<IRecommendationService, RecommendationManager>();
+            services.AddScoped<IRabbitMqService, IRabbitMqManager>();
            
 
             // DataAccess
